@@ -8,7 +8,7 @@ export default function Home() {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const [finished, setFinished] = useState(false); // after the time is over, change the default value to "true"
+  const [finished, setFinished] = useState(true);
   const date = "May 25, 2026";
   const endDate = new Date(date).getTime();
 
@@ -31,11 +31,9 @@ export default function Home() {
     // Time calculations for days, hours, minutes and seconds
     setYears(Math.floor(distance / (milliSecondsOfDay * 365)));
     setDays(
-      Math.floor(
-        (distance % (milliSecondsOfDay * 365)) / (milliSecondsOfDay),
-      ),
+      Math.floor((distance % (milliSecondsOfDay * 365)) / milliSecondsOfDay),
     );
-    setHours(Math.floor((distance % (milliSecondsOfDay)) / (1000 * 60 * 60)));
+    setHours(Math.floor((distance % milliSecondsOfDay) / (1000 * 60 * 60)));
     setMinutes(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
     setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
   }, 1000);
@@ -44,7 +42,7 @@ export default function Home() {
     "h-screen flex flex-col bg-[url('/download.jpg')] bg-no-repeat bg-cover";
   if (finished)
     pageStyle =
-      "h-screen flex flex-col bg-[url('/ministry.png')] bg-no-repeat bg-cover";
+      "h-screen flex flex-col bg-[url('/Me.jpeg')] bg-no-repeat bg-cover";
 
   return (
     <div className={pageStyle}>
@@ -65,7 +63,7 @@ export default function Home() {
 
       {finished && (
         <div className="text-center text-white text-4xl font-semibold p-8 font-serif mt-40 -mb-60">
-          It &apos; s over since
+          It&apos;s over since
         </div>
       )}
       <div className="flex flex-row flex-wrap items-center justify-center mt-60">
